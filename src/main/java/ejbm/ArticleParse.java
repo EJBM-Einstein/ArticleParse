@@ -2,6 +2,7 @@
 	Article Parse
  */
 
+import ejbm.parser.*;
 import java.io.*;
 
 public class ArticleParse {
@@ -13,10 +14,20 @@ public class ArticleParse {
     		System.exit(1);
     	}
 
-        System.out.println("Running Article Parse... (prints PDFs encountered)");
+    	Parser parser = new Parser();
+
+        System.out.println("Running ArticleParse ... (prints PDFs encountered)\n");
+
+        for (String fileName : args) {
+        	File article = new File(fileName);
+        	parser.run(article);
+        }
 
     }
 
+    /**
+     * Prints the purpose and usage for the main application ArticleParse
+     */
     private static void printUsageInterface() {
     	String message = "";
     	message += "+++ ArticleParse +++\n";
