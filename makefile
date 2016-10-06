@@ -12,16 +12,21 @@ CLASS_PATH=$(BUILD_DIR)
 SOURCES= \
 	$(EJBM_SOURCE_DIR)ArticleParse.java \
 	$(PARSER_SOURCE_DIR)Parser.java \
+	$(PARSER_SOURCE_DIR)ParserFileVisitor.java \
+
 
 CLASSES= \
 	$(EJBM_BUILD_DIR)ArticleParse.class \
 	$(PARSER_BUILD_DIR)Parser.class \
+	$(PARSER_BUILD_DIR)ParserFileVisitor.class \
+
 
 
 all: $(CLASSES)
 
 clean:
 	rm -f $(CLASSES)
+
 
 $(EJBM_BUILD_DIR)%.class : $(EJBM_SOURCE_DIR)%.java
 	javac -cp $(CLASS_PATH) -d $(BUILD_DIR) $(SOURCES)

@@ -19,8 +19,8 @@ public class ArticleParse {
         System.out.println("Running ArticleParse ... (prints PDFs encountered)\n");
 
         for (String fileName : args) {
-        	File article = new File(fileName);
-        	parser.run(article);
+        	File location = new File(fileName);
+        	parser.run(location);
         }
 
     }

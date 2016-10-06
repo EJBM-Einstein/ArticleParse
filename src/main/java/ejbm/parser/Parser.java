@@ -12,8 +12,9 @@ public class Parser {
 
     }
 
-    public void run(File article) {
-        System.out.println("article = " + article);
+    public void run(File location) {
+    	ParserFileVisitor visitor = new ParserFileVisitor(location);
+    	System.out.println("-------");
     }
 
 }
