@@ -5,7 +5,7 @@
 package ejbm.parser;
 
 import java.io.*;
-import java.nio.file;
+/*import java.nio.file;
 
 import static java.nio.file.FileVisitResult.*;
 
@@ -21,7 +21,7 @@ public class ParserFileVisitor extends FileVisitor<Path> {
         return FileVisitResult.CONTINUE;
     }
 
-    /*@Override
+    @Override
     public FileVisitResult postVisitDirectory(Path dir, IOException e) throws IOException {
         if (e == null) {
             Files.delete(dir);
@@ -30,6 +30,14 @@ public class ParserFileVisitor extends FileVisitor<Path> {
             // directory iteration failed
             throw e;
         }
-    }*/
+    }
+
+}*/
+
+public class ParserFileVisitor {
+
+    public ParserFileVisitor(File initLocation) {
+        System.out.println("initLocation = " + initLocation);
+    }
 
 }
