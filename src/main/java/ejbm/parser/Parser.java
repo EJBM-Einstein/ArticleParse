@@ -8,8 +8,10 @@ import java.io.*;
 
 public class Parser {
 
-    public Parser() {
+	private ParserConfiguration configuration;
 
+    public Parser(ParserConfiguration configuration) {
+    	this.configuration = configuration;
     }
 
     public void run(File location) {

@@ -12,12 +12,14 @@ CLASS_PATH=$(BUILD_DIR)
 SOURCES= \
 	$(EJBM_SOURCE_DIR)ArticleParse.java \
 	$(PARSER_SOURCE_DIR)Parser.java \
+	$(PARSER_SOURCE_DIR)ParserConfiguration.java \
 	$(PARSER_SOURCE_DIR)ParserFileVisitor.java \
 
 
 CLASSES= \
 	$(EJBM_BUILD_DIR)ArticleParse.class \
 	$(PARSER_BUILD_DIR)Parser.class \
+	$(PARSER_BUILD_DIR)ParserConfiguration.class \
 	$(PARSER_BUILD_DIR)ParserFileVisitor.class \
 
 

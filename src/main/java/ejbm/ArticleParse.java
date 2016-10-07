@@ -14,7 +14,8 @@ public class ArticleParse {
     		System.exit(1);
     	}
 
-    	Parser parser = new Parser();
+        ParserConfiguration configuration = new ParserConfiguration();
+    	Parser parser = new Parser(configuration);
 
         System.out.println("Running ArticleParse ... (prints PDFs encountered)\n");
 
