@@ -5,42 +5,36 @@
 package ejbm.parser;
 
 import java.io.*;
-/*import java.nio.file;
+import java.nio.*;
+import java.nio.file.*;
+import java.nio.file.attribute.*;
 
 import static java.nio.file.FileVisitResult.*;
 
 /**
  * Extends FileVistor to for a recursive search of journal articles for semantic parsing.
- *
-public class ParserFileVisitor extends FileVisitor<Path> {
-
-    public ParserFileVisitor(File initLocation) {
-    	System.out.println("initLocation = " + initLocation);
-    }
+ */
+public class ParserFileVisitor extends SimpleFileVisitor<Path> {
 
     @Override
-    public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-        System.out.println("file = " + file);
-        return FileVisitResult.CONTINUE;
-    }
+    public FileVisitResult visitFile(Path path, BasicFileAttributes attrs) {
 
-    @Override
-    public FileVisitResult postVisitDirectory(Path dir, IOException e) throws IOException {
-        if (e == null) {
-            Files.delete(dir);
-            return FileVisitResult.CONTINUE;
-        } else {
-            // directory iteration failed
-            throw e;
+        if (attrs.isRegularFile() || attrs.isSymbolicLink()) {
+            if (path.toString().toLowerCase().endsWith(".pdf")) {
+                System.out.println("Found PDF path:" + path);
+            }
         }
+
+        return CONTINUE;
     }
 
-}*/
-
-public class ParserFileVisitor {
-
-    public ParserFileVisitor(File initLocation) {
-        System.out.println("initLocation = " + initLocation);
+    @Override
+    public FileVisitResult postVisitDirectory(Path path, IOException ioException) {
+        return CONTINUE;
     }
 
+    @Override
+    public FileVisitResult visitFileFailed(Path path, IOException ioException) {
+        return CONTINUE;
+    }
 }

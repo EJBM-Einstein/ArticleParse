@@ -5,6 +5,8 @@
 package ejbm.parser;
 
 import java.io.*;
+import java.nio.file.*;
+
 
 /**
  * The article parser is initialized with a configuration (See ParserConfiguration). When the parser
@@ -21,8 +23,17 @@ public class Parser {
     }
 
     public void run(File location) {
-    	ParserFileVisitor visitor = new ParserFileVisitor(location);
-    	System.out.println("-------");
+    	try {
+    		System.out.println("------- parse location: " + location + " -------");
+			Path path = location.toPath();
+			ParserFileVisitor fileVisitor = new ParserFileVisitor();
+			Files.walkFileTree(path, fileVisitor);
+			System.out.println("--------------");
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.err.println("Caught IOException walking file tree.");
+			System.exit(1);
+		}
     }
 
 }
