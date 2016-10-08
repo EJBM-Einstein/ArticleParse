@@ -9,6 +9,9 @@ import java.io.*;
 
 import static java.nio.file.FileVisitResult.*;
 
+/**
+ * Extends FileVistor to for a recursive search of journal articles for semantic parsing.
+ *
 public class ParserFileVisitor extends FileVisitor<Path> {
 
     public ParserFileVisitor(File initLocation) {
