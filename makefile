@@ -7,7 +7,7 @@ EJBM_BUILD_DIR=$(BUILD_DIR)ejbm/
 PARSER_SOURCE_DIR=$(EJBM_SOURCE_DIR)parser/
 PARSER_BUILD_DIR=$(EJBM_BUILD_DIR)parser/
 
-CLASS_PATH=$(BUILD_DIR)
+CLASS_PATH=.:$(BUILD_DIR):libs/pdfbox-2.0.3.jar
 
 SOURCES= \
 	$(EJBM_SOURCE_DIR)ArticleParse.java \
@@ -31,7 +31,7 @@ clean:
 
 
 $(EJBM_BUILD_DIR)%.class : $(EJBM_SOURCE_DIR)%.java
-	javac -cp $(CLASS_PATH) -d $(BUILD_DIR) $(SOURCES)
+	javac -cp "$(CLASS_PATH)" -d $(BUILD_DIR) $(SOURCES)
 
 $(PARSER_BUILD_DIR)%.class : $(PARSER_SOURCE_DIR)%.java 
-	javac -cp $(CLASS_PATH) -d $(BUILD_DIR) $(SOURCES)
+	javac -cp "$(CLASS_PATH)" -d $(BUILD_DIR) $(SOURCES)
