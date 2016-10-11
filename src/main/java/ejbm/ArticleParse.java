@@ -9,7 +9,7 @@ import java.io.*;
 public class ArticleParse {
 
 	// cd build/main/classes/
-	// java -cp ".:../../../libs/pdfbox-2.0.3.jar" ArticleParse ../../../test/data/
+	// java -cp ".:../../../libs/pdfbox-app-2.0.3.jar" ArticleParse ../../../test/data/
 
     public static void main(String[] args) {
 

@@ -9,6 +9,10 @@ import java.nio.*;
 import java.nio.file.*;
 import java.nio.file.attribute.*;
 
+import org.apache.pdfbox.pdmodel.*;
+import org.apache.pdfbox.contentstream.*;
+import org.apache.pdfbox.text.*;
+
 import static java.nio.file.FileVisitResult.*;
 
 /**
@@ -22,6 +26,17 @@ public class ParserFileVisitor extends SimpleFileVisitor<Path> {
         if (attrs.isRegularFile() || attrs.isSymbolicLink()) {
             if (path.toString().toLowerCase().endsWith(".pdf")) {
                 System.out.println("Found PDF path:" + path);
+
+                try {
+                    PDDocument pddDocument = PDDocument.load(path.toFile());
+                    PDFTextStripper textStripper = new PDFTextStripper();
+                    String content = textStripper.getText(pddDocument);
+                    System.out.println(content);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    System.err.println("Caught IOException in ParserFileVisitor visitFile().");
+                }
+                
             }
         }
 
