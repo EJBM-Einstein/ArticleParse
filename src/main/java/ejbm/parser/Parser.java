@@ -24,11 +24,9 @@ public class Parser {
 
     public void run(File location) {
     	try {
-    		System.out.println("------- parse location: " + location + " -------");
 			Path path = location.toPath();
 			ParserFileVisitor fileVisitor = new ParserFileVisitor();
 			Files.walkFileTree(path, fileVisitor);
-			System.out.println("--------------");
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.err.println("Caught IOException walking file tree.");
