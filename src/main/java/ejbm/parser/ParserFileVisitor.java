@@ -21,10 +21,20 @@ import static java.nio.file.FileVisitResult.*;
 public class ParserFileVisitor extends SimpleFileVisitor<Path> {
 
     private static String JOURNAL_NAME_SHORT = "EJBM Einstein J. Biol. Med.";
-    private static String[] ARTICLE_TYPES = { "CASE REPORT" };
+    private static String[] ARTICLE_TYPES = 
+    { 
+        "BLOG POST",
+        "CASE REPORT",
+        "COMMENTARY",
+        "BRIEF COMMUNICATION",
+        "HISTORICAL PERSPECTIVE",
+        "MEDICAL ETHICS",
+        "MEDICAL REVIEW"
+    };
 
     private Path path;
     private String[] content;
+    private String fullContent;
 
     private String firstPage;
     private String lastPage;
@@ -43,9 +53,13 @@ public class ParserFileVisitor extends SimpleFileVisitor<Path> {
                 try {
                     PDDocument pddDocument = PDDocument.load(path.toFile());
                     PDFTextStripper textStripper = new PDFTextStripper();
+
+                    fullContent = textStripper.getText(pddDocument);
+
                     textStripper.setStartPage( 1 );
                     textStripper.setEndPage( 1 );
                     content = textStripper.getText(pddDocument).split("\\n");
+                    pddDocument.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                     System.err.println("Caught IOException in ParserFileVisitor visitFile().");
@@ -53,6 +67,8 @@ public class ParserFileVisitor extends SimpleFileVisitor<Path> {
                 
                 parseHeader();
                 parseArticleType();
+
+
 
                 printOutput();
             }
@@ -69,6 +85,8 @@ public class ParserFileVisitor extends SimpleFileVisitor<Path> {
         System.out.println("Volume No: " + volumeNumber);
         System.out.println();
         System.out.println("Article Type: " + articleType);
+        System.out.println("++++++++");
+        System.out.println(fullContent);
         System.out.println("--------");
     }
 
@@ -88,9 +106,6 @@ public class ParserFileVisitor extends SimpleFileVisitor<Path> {
     private void parseArticleType() {
         articleType = "UKNOWN";
         for (String type : ARTICLE_TYPES) {
-            System.out.println(content[1]);
-            System.out.println(type);
-
             if (content[1].equals(type)) {
                 articleType = type;
                 break;
